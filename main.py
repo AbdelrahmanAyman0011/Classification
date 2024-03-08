@@ -1,8 +1,9 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 # Load the dataset
 file_path = "/home/bedo/Desktop/Classification/files/magic04.data"
@@ -47,6 +48,9 @@ y_test = test_set['class']
 # Define a range of values for k
 k_values = range(1, 21)
 
+# Initialize lists to store accuracy scores
+accuracy_scores = []
+
 # Iterate over different values of k
 for k in k_values:
     # Initialize the k-NN classifier with the current k
@@ -58,13 +62,28 @@ for k in k_values:
     # Predict the classes for validation data
     y_val_pred = knn_classifier.predict(X_val)
     
-    # Calculate evaluation metrics
+    # Calculate accuracy score for the current k value
     accuracy = accuracy_score(y_val, y_val_pred)
-    report = classification_report(y_val, y_val_pred, output_dict=True)
+    
+    # Append accuracy score to the list
+    accuracy_scores.append(accuracy)
+    conf_matrix = confusion_matrix(y_val, y_val_pred)
     
     # Print evaluation metrics for the current k value
     print(f"k = {k}:")
     print("Accuracy:", accuracy)
     print("Classification Report:")
     print(classification_report(y_val, y_val_pred))
+    print("Confusion Matrix:")
+    print(conf_matrix)
     print("-------------------------------------")
+
+# Plot accuracy scores for different values of k
+plt.figure(figsize=(10, 6))
+plt.plot(k_values, accuracy_scores, marker='o', linestyle='-', color='b')
+plt.title('Accuracy vs. Number of Neighbors (k)')
+plt.xlabel('Number of Neighbors (k)')
+plt.ylabel('Accuracy')
+plt.xticks(np.arange(1, 21, step=1))
+plt.grid(True)
+plt.show()
