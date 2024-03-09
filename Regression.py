@@ -4,7 +4,7 @@ from sklearn.linear_model import LinearRegression, Lasso, Ridge
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 
-file_path = "/home/bedo/Desktop/Classification/files/California_Houses.csv"
+file_path = "California_Houses.csv"
 data = pd.read_csv(file_path)  # data is a dataframe
 # Split the balanced dataset into training and the rest
 training_set, remaining_data = train_test_split(data, test_size=0.3, random_state=42)
@@ -78,6 +78,7 @@ ridge_test_predictions = ridge_model.predict(x_test)
 ridge_test_mse = mean_squared_error(y_test, ridge_test_predictions)
 print("***************************************************")
 
+
 print("Ridge Regression Test MSE:", ridge_test_mse)
 # Calculate Mean Absolute Error for Ridge Regression on test set
 ridge_test_mae = mean_absolute_error(y_test, ridge_test_predictions)
@@ -109,32 +110,6 @@ if best_model_mse == "Linear Regression":
     test_mse = linear_test_mse
     test_mae = mean_absolute_error(y_test, linear_test_predictions)
 elif best_model_mse == "Lasso Regression":
-    test_mse = lasso_test_mse
-    test_mae = mean_absolute_error(y_test, lasso_test_predictions)
-else:  # Ridge Regression
-    test_mse = ridge_test_mse
-    test_mae = mean_absolute_error(y_test, ridge_test_predictions)
-
-print("Test MSE for Best Model:", test_mse)
-print("Test MAE for Best Model:", test_mae)
-print("***************************************************")
-print("***************************************************")
-
-# Validation Set Evaluation
-# Find the best-performing model based on validation set MSE
-best_model_mse = min(linear_val_mse, min(lasso_val_mse, ridge_val_mse))
-print("Best Model based on Validation Set MSE:", best_model_mse)
-
-# Find the best-performing model based on validation set MAE
-best_model_mae = min(linear_val_mae, min(lasso_val_mae, ridge_val_mae))
-print("Best Model based on Validation Set MAE:", best_model_mae)
-
-# Test Set Evaluation
-# Evaluate the best-performing model on the test set
-if best_model_mse == linear_val_mae:
-    test_mse = linear_test_mse
-    test_mae = mean_absolute_error(y_test, linear_test_predictions)
-elif best_model_mse == lasso_val_mae:
     test_mse = lasso_test_mse
     test_mae = mean_absolute_error(y_test, lasso_test_predictions)
 else:  # Ridge Regression
