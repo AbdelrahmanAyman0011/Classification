@@ -6,7 +6,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 # Load the dataset
-file_path = "/home/bedo/Desktop/Classification/files/magic04.data"
+file_path = "files\magic04.data"
 col_names = ['fLength', 'fWidth', 'fSize', 'fConc', 'fConc1', 'fAsym', 'fM3Long', 'fM3Trans', 'fAlpha', 'fDist',
              'class']
 data = pd.read_csv(file_path, names=col_names)
