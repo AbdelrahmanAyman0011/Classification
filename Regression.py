@@ -4,7 +4,7 @@ from sklearn.linear_model import LinearRegression, Lasso, Ridge
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 
-file_path = "California_Houses.csv"
+file_path = "files/California_Houses.csv"
 data = pd.read_csv(file_path)  # data is a dataframe
 # Split the balanced dataset into training and the rest
 training_set, remaining_data = train_test_split(data, test_size=0.3, random_state=42)
