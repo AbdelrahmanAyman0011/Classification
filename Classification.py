@@ -8,7 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 # Load the dataset
-file_path = "magic04.data"
+file_path = "files/magic04.data"
 col_names = ['fLength', 'fWidth', 'fSize', 'fConc', 'fConc1', 'fAsym', 'fM3Long', 'fM3Trans', 'fAlpha', 'fDist',
              'class']
 data = pd.read_csv(file_path, names=col_names)
