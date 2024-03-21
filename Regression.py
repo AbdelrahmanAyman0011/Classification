@@ -4,6 +4,13 @@ from sklearn.linear_model import LinearRegression, Lasso, Ridge
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 
+
+# Regression:
+# Goal: Predict a continuous numerical value based on input features.
+# Output: Continuous numerical values.
+# Evaluation Metrics: Mean squared error (MSE), mean absolute error (MAE), R-squared.
+# Examples: Stock price prediction, house price estimation, demand forecasting.
+
 file_path = "files/California_Houses.csv"
 data = pd.read_csv(file_path)  # data is a dataframe
 # Split the balanced dataset into training and the rest
@@ -14,7 +21,15 @@ training_set, remaining_data = train_test_split(data, test_size=0.3, random_stat
 validation_set, test_set = train_test_split(
     remaining_data, test_size=0.5, random_state=42
 )
+
+# in training set the ml model train by feeding it input data along with corresponding correct output lable, the model learns patterns and relationshios in the data
+# during this phase
+#Validation Set: Used to evaluate the model's performance during training, specifically for tuning hyperparameters and preventing overfitting.
+# It helps in selecting the best-performing model by providing an independent dataset for evaluation.
+#Test Set: Reserved exclusively for assessing the final model's performance after training and validation. It serves as a completely unseen dataset,
+# ensuring an unbiased evaluation of the model's ability 
 # Define features (X) and target variable (y)
+
 x_train = training_set.drop(columns=["Median_House_Value"])
 y_train = training_set["Median_House_Value"]
 

@@ -7,6 +7,13 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.preprocessing import MinMaxScaler
 
 
+# Classification:
+# Goal: Categorize input data into predefined classes or categories.
+# Output: Discrete class labels or categories.
+# Evaluation Metrics: Accuracy, precision, recall, F1-score.
+# Examples: Spam email detection, sentiment analysis, image classification.
+
+
 # Load the dataset
 file_path = "files/magic04.data"
 col_names = ['fLength', 'fWidth', 'fSize', 'fConc', 'fConc1', 'fAsym', 'fM3Long', 'fM3Trans', 'fAlpha', 'fDist',
@@ -25,6 +32,7 @@ gamma_subset = gamma_events.sample(n=hadron_count, random_state=42)
 
 # Create a balanced dataset by concatenating the gamma subset with hadron events:
 balanced_data = pd.concat([gamma_subset, hadron_events])
+# why i balance the data > to avoiding bias , improving generalization
 
 # Shuffle the combined dataset to ensure randomness:
 balanced_data = balanced_data.sample(frac=1, random_state=42).reset_index(drop=True)
